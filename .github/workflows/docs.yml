@@ -25,7 +25,9 @@ jobs:
                 uses: actions/cache@v2
                 with:
                     path: .cache
-                    key: ${{ runner.os }}-doctor-rst-${{ steps.extract_base_branch.outputs.branch }}
+                    key: ${{ runner.os }}-doctor-rst-${{ steps.extract_base_branch.outputs.branch }}-${{ github.sha }}
+                    restore-keys: |
+                        ${{ runner.os }}-doctor-rst-${{ steps.extract_base_branch.outputs.branch }}-
 
             -   name: "Run DOCtor-RST"
                 uses: docker://oskarstark/doctor-rst
