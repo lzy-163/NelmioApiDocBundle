@@ -15,10 +15,10 @@ jobs:
                 uses: actions/checkout@v2
 
             -   name: "Create cache dir"
-                run: mkdir .cache
+                run: mkdir -p .cache
 
             -   name: "Extract base branch name"
-                run: echo "##[set-output name=branch;]$(echo ${GITHUB_BASE_REF:=${GITHUB_REF##*/}})"
+                run: echo "branch=${GITHUB_BASE_REF:-${GITHUB_REF#refs/heads/}}" >> $GITHUB_OUTPUT
                 id: extract_base_branch
 
             -   name: "Cache DOCtor-RST"
